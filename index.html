@@ -445,11 +445,83 @@
                 font-size: 24px;
             }
         }       
+    .popup {
+            position: fixed;
+            top: -80px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 90%;
+            max-width: 350px;
+            background: #fff;
+            color: #333;
+            padding: 12px;
+            border-radius: 10px;
+            box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
+            font-size: 14px;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            z-index: 1000;
+            transition: top 0.5s ease-in-out;
+        }
+
+        .popup.show {
+            top: 10px;
+        }
+
+        @media (max-width: 600px) {
+            .popup {
+                font-size: 12px;
+                padding: 10px;
+            }
+        }
     </style>
 </head>
 <body>
 
     <div class="container">
+            <div id="popup" class="popup">
+        <span id="popup-emoji"></span>
+        <span id="popup-text"></span>
+    </div>
+
+    <script>
+        const names = [
+            "Andi", "Budi", "Citra", "Dewi", "Eka", "Fajar", "Gita", "Hadi", "Indra", "Joko",
+            "Kiki", "Lina", "Mira", "Nanda", "Oka", "Putra", "Qori", "Rina", "Siti", "Toni",
+            "Umar", "Vina", "Wawan", "Xena", "Yogi", "Zahra", "Bayu", "Cindy", "Dian", "Erwin",
+            "Faisal", "Gilang", "Hana", "Ilham", "Jasmine", "Kevin", "Lutfi", "Maya", "Niko",
+            "Omar", "Pandu", "Qonita", "Rizky", "Satria", "Tari", "Uci", "Vito", "Widi", "Zaki"
+        ];
+
+        const emojis = ["🏆", "🔥", "🚀", "💎", "🎉", "✨", "👑", "🎯"];
+
+        function getRandomItem(array) {
+            return array[Math.floor(Math.random() * array.length)];
+        }
+
+        function showPopup() {
+            const popup = document.getElementById("popup");
+            const popupText = document.getElementById("popup-text");
+            const popupEmoji = document.getElementById("popup-emoji");
+
+            popupEmoji.innerHTML = getRandomItem(emojis);
+            popupText.innerHTML = `${getRandomItem(names)} baru saja menjadi VVIP MEMBERSHIP LIFETIME!`;
+
+            popup.classList.add("show");
+
+            setTimeout(() => {
+                popup.classList.remove("show");
+            }, 4000);
+        }
+
+        setInterval(showPopup, 10000);
+
+        document.addEventListener("DOMContentLoaded", showPopup);
+    </script>
+
         <h3>ULAS CRYPTO <span class="highlight">VVIP COBA BOBA</span></h3>
         <h1>Rahasia <span class="profit-text">Profit 50 - 100 Juta</span> dari Memecoin & Binance Future</h1>
         <h2 class="sub-title">Tanpa Harus DYOR, Cukup Ikuti Sinyal</h2>
